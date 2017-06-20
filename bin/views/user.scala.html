@@ -1,0 +1,11 @@
+@(userForm: Form[UserData])(implicit messages: Messages)
+
+@main("Welcome to Play") {
+<div>
+	@helper.form(action = routes.HomeController.index()) {
+	@helper.inputText(userForm("name"))
+	@helper.inputText(userForm("age"))
+}
+</div>
+
+}

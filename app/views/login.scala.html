@@ -1,0 +1,24 @@
+@(loginForm:Form[(String,String)])(implicit messages: Messages)
+
+@***UsersRow(firstname: String, lastname: Option[String] = None, dob: java.sql.Date, email: String, password: String, createddate: java.sql.Date)***@
+@main("Welcome to Play") {
+
+@if(loginForm.hasGlobalErrors) {
+    @loginForm.globalErrors.map { error: FormError =>
+      <div>
+        @error.key: @error.message
+      </div>
+    }
+  }
+    <hr/>
+<div>
+
+	@helper.form(routes.LoginController.login()) {
+	@helper.inputText(loginForm("email"))
+	@helper.inputPassword(loginForm("password"))
+
+	<button>login</button>
+}
+</div>
+
+}

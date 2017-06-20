@@ -1,0 +1,15 @@
+@(user: String, labTest: scala.Seq[Tables.TestRow])
+
+@main("Welcome to Play") {
+
+    Hi @user! <a href="@routes.LoginController.logout">logout</a>
+
+    <br/>
+    <br/>
+    @{
+        if(!labTest.isEmpty)
+            testlist(labTest)
+    }
+}
+
+

@@ -1,0 +1,20 @@
+@import models.Tables.TestRow
+@import models.Tables.LabsRow
+@(test: TestRow, lab: LabsRow, sampleAddressForm: Form[(String, java.sql.Date)] )(implicit messages: Messages)
+
+<div>
+
+    Test to be taken<b>@test.test</b>  at the cost <b>@test.cost</b>
+
+    selected lab <b>@lab.labname </b>
+
+    please enter the sample collection address and date of test
+    <br/>
+
+    @helper.form(routes.BookTest.submitDetails) {
+        @helper.inputText(sampleAddressForm("sampleaddress"))
+        @helper.inputDate(sampleAddressForm("testdate"))
+        <button>submit details</button>
+
+    }
+</div>

@@ -1,0 +1,27 @@
+@(userForm:Form[Tables.UsersRow])(implicit messages: Messages)
+
+@***UsersRow(firstname: String, lastname: Option[String] = None, dob: java.sql.Date, email: String, password: String, createddate: java.sql.Date)***@
+@main("Welcome to Play") {
+
+@if(userForm.hasGlobalErrors) {
+    @userForm.globalErrors.map { error: FormError =>
+      <div>
+        @error.key: @error.message
+      </div>
+    }
+  }
+    <hr/>
+<div>
+
+	@helper.form(routes.Registration.register()) {
+	@helper.inputText(userForm("firstname"))
+	@helper.inputText(userForm("lastname"))
+	@helper.inputDate(userForm("dob"))
+	@helper.inputText(userForm("email"))
+	@helper.inputPassword(userForm("password"))
+
+	<button>Create account</button>
+}
+</div>
+
+}

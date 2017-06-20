@@ -1,0 +1,32 @@
+@(test: Tables.TestRow, labs: scala.Seq[Tables.LabsRow], searchForm: Form[(String, String)])(implicit messages: Messages)
+
+
+<p> Test select @test.test cost @test.cost </p>
+<br>
+@if(!labs.isEmpty) {
+    <ul>
+    @for(lab <- labs) {
+        <li>@lab.labname @lab.address @lab.city @lab.zipcode
+        <a href="@routes.BookTest.takeTest(lab.id.get)">testhere</a>
+        </li>
+        <br>
+        }
+    </ul>
+} else {
+
+    @if(searchForm.hasGlobalErrors) {
+        @searchForm.globalErrors.map { error: FormError =>
+            <div>
+                @error.message
+            </div>
+        }
+    }
+    <p> find a lab</p>
+
+    @helper.form(routes.BookTest.listLabForLoc) {
+        @helper.inputText(searchForm("city"))
+        @helper.inputText(searchForm("zipcode"))
+        <button>search</button>
+
+    }
+}

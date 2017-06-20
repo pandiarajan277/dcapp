@@ -1,0 +1,7 @@
+@(labTest: scala.Seq[Tables.TestRow])
+
+<ul>
+    @for(test <- labTest) {
+        <li>@test.test ($@test.cost) <a href="@routes.BookTest.searchLabsForTest(test.id) ">Book</a> </li>
+    }
+</ul
